@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://prefabs/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/Arena.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/ArenaApple1.cs" type="Script" id=3]
+
+[node name="Arena" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="Bullet" parent="." index="2" instance=ExtResource( 1 )]
+position = Vector2( 29, 274 )
+
+[node name="Bullet2" parent="." index="3" instance=ExtResource( 1 )]
+position = Vector2( 26, 25 )
+
+[node name="Bullet3" parent="." index="4" instance=ExtResource( 1 )]
+position = Vector2( 615, 20 )
+
+[node name="Bullet4" parent="." index="5" instance=ExtResource( 1 )]
+position = Vector2( 613, 277 )

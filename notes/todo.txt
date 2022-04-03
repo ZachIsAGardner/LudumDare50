@@ -1,0 +1,14 @@
+- 3 more characters
+- better win screen
+- songs  
+    - intro song
+    - main song
+    - battle song
+    - win song
+    - lose song
+- finish level design
+- exports for 
+    - web
+    - mac
+    - linux
+    - windows

@@ -1,0 +1,93 @@
+[gd_resource type="Theme" load_steps=8 format=2]
+
+[ext_resource path="res://fonts/WorkSans-VariableFont_wght.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+bg_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.435294, 0.435294, 0.435294, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+bg_color = Color( 0.384314, 0.286275, 0.2, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 0.678431, 0, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+bg_color = Color( 0.329412, 0.329412, 0.329412, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+bg_color = Color( 0.615686, 0.615686, 0.615686, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+Button/colors/font_color_focus = Color( 1, 0.678431, 0, 1 )
+Button/fonts/font = SubResource( 3 )
+Button/styles/disabled = SubResource( 8 )
+Button/styles/focus = SubResource( 5 )
+Button/styles/hover = SubResource( 6 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 7 )

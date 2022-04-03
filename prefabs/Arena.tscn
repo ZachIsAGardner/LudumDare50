@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://prefabs/Dodger.tscn" type="PackedScene" id=1]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 157.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 430, 11.25 )
+
+[node name="Arena" type="Panel"]
+margin_left = 337.0
+margin_top = 358.0
+margin_right = 977.0
+margin_bottom = 654.0
+custom_styles/panel = SubResource( 5 )
+
+[node name="Dodger" parent="." instance=ExtResource( 1 )]
+position = Vector2( 312, 155 )
+
+[node name="WallStaticBody" type="StaticBody2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="Wall" type="CollisionShape2D" parent="WallStaticBody"]
+position = Vector2( 1, 149 )
+shape = SubResource( 6 )
+
+[node name="Wall2" type="CollisionShape2D" parent="WallStaticBody"]
+position = Vector2( 640, 149 )
+shape = SubResource( 6 )
+
+[node name="Wall3" type="CollisionShape2D" parent="WallStaticBody"]
+position = Vector2( 300, -5 )
+shape = SubResource( 7 )
+
+[node name="Wall4" type="CollisionShape2D" parent="WallStaticBody"]
+position = Vector2( 300, 301 )
+shape = SubResource( 7 )
+
+[node name="WallArea" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="Wall" type="CollisionShape2D" parent="WallArea"]
+position = Vector2( 1, 149 )
+shape = SubResource( 6 )
+
+[node name="Wall2" type="CollisionShape2D" parent="WallArea"]
+position = Vector2( 640, 149 )
+shape = SubResource( 6 )
+
+[node name="Wall3" type="CollisionShape2D" parent="WallArea"]
+position = Vector2( 300, -5 )
+shape = SubResource( 7 )
+
+[node name="Wall4" type="CollisionShape2D" parent="WallArea"]
+position = Vector2( 300, 301 )
+shape = SubResource( 7 )

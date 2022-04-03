@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/OhNo.ogg-9ae6687d9c2fabaa0bc15d41063dfc72.oggstr"
+
+[deps]
+
+source_file="res://sfx/OhNo.ogg"
+dest_files=[ "res://.import/OhNo.ogg-9ae6687d9c2fabaa0bc15d41063dfc72.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
