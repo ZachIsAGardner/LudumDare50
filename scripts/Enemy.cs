@@ -87,6 +87,9 @@ public class Enemy : KinematicBody2D
     {
         if (body.Name == "Player")
         {
+            Game.PlaySfx("Notice");
+            Game.PlaySong("Hello");
+
             state = "Stand";
 
             Sprite spottedInstance = (Sprite)Game.spottedPrefab.Instance();

@@ -8,7 +8,7 @@ public class BulletNumber : Bullet
     public int direction = 1;
 
     Vector2 velocity;
-    float speed = 50f;
+    float speed = 100f;
     float timeOffset = new List<float>() { 0.25f, 0.5f, 0.75f, 1, 0 }.Random();
 
     bool didInit = false;
@@ -46,7 +46,6 @@ public class BulletNumber : Bullet
         if (!didInit)
         {
             startPosition = Position;
-            velocity.x = 10f * -direction;
             didInit = true;
         }
         velocity.x += speed * direction * delta;

@@ -55,6 +55,22 @@ margin_bottom = 720.0
 rect_min_size = Vector2( 0, 64 )
 theme = SubResource( 2 )
 
+[node name="CharacterContainer" type="HBoxContainer" parent="."]
+margin_left = -5.0
+margin_top = 75.0
+margin_right = 1275.0
+margin_bottom = 331.0
+alignment = 1
+
+[node name="Character" type="TextureRect" parent="CharacterContainer"]
+margin_left = 512.0
+margin_right = 768.0
+margin_bottom = 256.0
+texture = ExtResource( 3 )
+
+[node name="Shaker" type="Node" parent="CharacterContainer/Character"]
+script = ExtResource( 11 )
+
 [node name="ActionContainer" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -172,22 +188,6 @@ position = Vector2( -313, 161 )
 texture = ExtResource( 10 )
 
 [node name="ArenaContainer" type="Control" parent="."]
-
-[node name="CharacterContainer" type="HBoxContainer" parent="."]
-margin_left = -5.0
-margin_top = 75.0
-margin_right = 1275.0
-margin_bottom = 331.0
-alignment = 1
-
-[node name="Character" type="TextureRect" parent="CharacterContainer"]
-margin_left = 512.0
-margin_right = 768.0
-margin_bottom = 256.0
-texture = ExtResource( 3 )
-
-[node name="Shaker" type="Node" parent="CharacterContainer/Character"]
-script = ExtResource( 11 )
 
 [node name="SpeachBubble" type="Sprite" parent="."]
 visible = false

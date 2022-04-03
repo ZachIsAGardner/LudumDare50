@@ -13,10 +13,6 @@ public class Main : Node2D
     {
         base._Ready();
 
-        if (Game.skipIntro)
-        {
-            return;
-        }
 
         player = this.GetChildWithNameInHierarchy("Player") as Player;
         interactPrompt = this.GetChildWithNameInHierarchy("InteractPrompt") as Label;
@@ -24,11 +20,21 @@ public class Main : Node2D
         player.IsInControl = false;
         playerSprite = player.GetChildWithType<Sprite>();
 
+        if (Game.skipIntro)
+        {
+            player.IsInControl = true;
+            playerSprite.Frame = 5;
+            Game.PlaySong("Main");
+            return;
+        }
+
         _ = Cutscene();
     }
 
     async Task Cutscene()
     {
+        Game.PlaySong("Intro");
+        
         playerSprite.Scale = new Vector2(-1, 1);
         await Async.WaitForMilliseconds(2000);
 
@@ -55,19 +61,21 @@ public class Main : Node2D
         Talk.Show();
         playerSprite.Frame = 2;
         await Talk.Next("Hmmmm no one's around. Now's my chance.");
+        Game.PlaySong("");
 
         playerSprite.Frame = 3;
         Talk.Hide();
         Game.PlaySfx("Fart");
         Shaker playerShaker = player.GetChildWithTypeInHierarchy<Shaker>();
         playerShaker.ShakeX(4.5f, 8);
-        await Async.WaitForMilliseconds(3500);
+        await Async.WaitForMilliseconds(3000);
 
         playerSprite.Frame = 4;
         playerShaker.ShakeX(2.5f, 24);
-        await Async.WaitForMilliseconds(2000);
+        await Async.WaitForMilliseconds(3000);
 
         Talk.Show();
+        Game.PlaySong("Terror");
         await Talk.Next("Oh. My. God.");
 
         Talk.Hide();
@@ -82,12 +90,14 @@ public class Main : Node2D
 
         Talk.Show();
         await Talk.Next("No wait... I think there's still time.");
+        Game.FadeOutSong();
 
         await Talk.Next("I'll be fine if I can make it to a bathroom in time.");
         await Talk.Next("I just gotta keep my composure.");
         playerSprite.Frame = 5;
         
         await Talk.End("I hope I don't run into anyone.");
+        Game.PlaySong("Main");
 
         player.IsInControl = true;
         movePrompt.Show();

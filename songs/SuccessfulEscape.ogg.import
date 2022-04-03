@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SuccessfulEscape.ogg-9149e41a6f0abc2d1659d64dc782706e.oggstr"
+
+[deps]
+
+source_file="res://songs/SuccessfulEscape.ogg"
+dest_files=[ "res://.import/SuccessfulEscape.ogg-9149e41a6f0abc2d1659d64dc782706e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

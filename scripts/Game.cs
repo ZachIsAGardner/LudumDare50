@@ -6,7 +6,7 @@ public class Game : Node
 {
     public static float elapsed = 0;
 
-    public static bool skipIntro = true;
+    public static bool skipIntro = false;
 
     private static Node instance;
 
@@ -22,6 +22,7 @@ public class Game : Node
     public static PackedScene floatingTextboxPrefab;
     public static PackedScene fadePrefab;
     public static PackedScene sfxPrefab;
+    public static PackedScene songPrefab;
 
     public static PackedScene arenaApple1Prefab;
     public static PackedScene arenaCrestfallen1Prefab;
@@ -29,6 +30,9 @@ public class Game : Node
     public static PackedScene arenaEggMan1Prefab;
     public static PackedScene arenaLongCat1Prefab;
     public static PackedScene arenaMultiButt1Prefab;
+
+    private static AudioStreamPlayer song;
+    private static bool fadeOut = false;
 
     // Talk
 
@@ -47,6 +51,7 @@ public class Game : Node
         floatingTextboxPrefab = ResourceLoader.Load<PackedScene>("res://prefabs/FloatingTextbox.tscn");
         fadePrefab = ResourceLoader.Load<PackedScene>("res://prefabs/Fade.tscn");
         sfxPrefab = ResourceLoader.Load<PackedScene>("res://prefabs/Sfx.tscn");
+        songPrefab = ResourceLoader.Load<PackedScene>("res://prefabs/Song.tscn");
 
         arenaApple1Prefab = ResourceLoader.Load<PackedScene>("res://prefabs/ArenaApple1.tscn");
         arenaCrestfallen1Prefab = ResourceLoader.Load<PackedScene>("res://prefabs/ArenaCrestfallen1.tscn");
@@ -61,6 +66,11 @@ public class Game : Node
         base._Process(delta);
 
         elapsed += delta;
+
+        if (fadeOut && song != null)
+        {
+            song.VolumeDb -= 10f * delta;
+        }
     }
 
     public static void Fade(Action middleAction)
@@ -95,5 +105,33 @@ public class Game : Node
         AudioStream stream = ResourceLoader.Load<AudioStream>(path);
         sfx.Stream = stream;
         sfx.Play();
+    }
+
+    public static void PlaySong(string name)
+    {
+        fadeOut = false;
+
+        if (song != null)
+        {
+            song.Stop();
+            song.QueueFree();
+        }
+
+        if (String.IsNullOrWhiteSpace(name))
+        {
+            return;
+        }
+
+        song = songPrefab.Instance() as AudioStreamPlayer;
+        instance.AddChild(song);
+        string path = $"res://songs/{name}.ogg";
+        AudioStream stream = ResourceLoader.Load<AudioStream>(path);
+        song.Stream = stream;
+        song.Play();
+    }
+
+    public static void FadeOutSong()
+    {
+        fadeOut = true;
     }
 }

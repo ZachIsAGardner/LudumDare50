@@ -18,6 +18,19 @@ public class ConfrontationEntry
     public List<PackedScene> arenas = new List<PackedScene>() { };
     public List<TalkOption> options = new List<TalkOption>() { };
 
+    public ConfrontationEntry Copy()
+    {
+        ConfrontationEntry result = new ConfrontationEntry();
+
+        result.character = character;
+        result.flavorText = flavorText;
+        result.arenas = new List<PackedScene>() { };
+        foreach (PackedScene arena in arenas) result.arenas.Add(arena);
+        foreach (TalkOption option in options) result.options.Add(option);
+
+        return result;
+    }
+
     public static ConfrontationEntry Apple = new ConfrontationEntry()
     {
         character = "Apple",
@@ -33,15 +46,19 @@ public class ConfrontationEntry
                 text = "Help",
                 action = (Confrontation confrontation) => {
                     confrontation.canLeave = true;
+
                     confrontation.character.Texture = ResourceLoader.Load<Texture>("res://sprites/AppleNoSuit.png");
                     confrontation.character.GetChildWithType<Shaker>().ShakeX();
+
+                    confrontation.entry = confrontation.entry.Copy();
+
                     confrontation.entry.flavorText = "They seem satisfied!";
                     confrontation.entry.options = new List<TalkOption>()
                     {
                         new TalkOption()
                         {
                             text = "Stare",
-                            action = (Confrontation confrontation2) => {  },
+                            action = _ => {  },
                             reply = "You stare at their half naked body.",
                             speach = "Um.. I'm okay now, you can leave if you want."
                         }
@@ -112,6 +129,7 @@ public class ConfrontationEntry
                 text = "Ask about the butts",
                 action = (Confrontation confrontation) =>
                 {
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "It seems they like talking about their butts.";
                     confrontation.entry.options = new List<TalkOption>()
                     {
@@ -122,6 +140,7 @@ public class ConfrontationEntry
                             action = _ =>
                             {
                                 confrontation.canLeave = true;
+                                confrontation.entry = confrontation.entry.Copy();
                                 confrontation.entry.flavorText = "They seem very proud of themselves.";
                             },
                             speach = "I get that a lot!"
@@ -131,6 +150,7 @@ public class ConfrontationEntry
                             text = "Talk about the weather",
                             action = _ =>
                             {
+                                confrontation.entry = confrontation.entry.Copy();
                                 confrontation.entry.flavorText = "It is nice out today isn't it?";
                             },
                             reply = "You chat casually about the weather.",
@@ -146,6 +166,7 @@ public class ConfrontationEntry
                 text = "Talk about the weather",
                 action = (Confrontation confrontation) =>
                 {
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "It is nice out today isn't it?";
                 },
                 reply = "You chat casually about the weather.",
@@ -177,6 +198,8 @@ public class ConfrontationEntry
                 action = (Confrontation confrontation) =>
                 {
                     confrontation.canLeave = true;
+
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "Chill.";
                 },
                 reply = "You nod at them.",
@@ -187,6 +210,7 @@ public class ConfrontationEntry
 
     private static Action<Confrontation> schoolChildRound2 = (Confrontation confrontation) =>
     {
+        confrontation.entry = confrontation.entry.Copy();
         confrontation.entry.flavorText = "Now they want to know what 2 * 11 is.";
         confrontation.entry.options = new List<TalkOption>()
         {
@@ -206,7 +230,7 @@ public class ConfrontationEntry
             },
             new TalkOption()
             {
-                text = "2",
+                text = "22",
                 action = _ => schoolChildRound3(confrontation),
                 reply = "You tell them the correct answer and they feverishly write it down.",
                 speach = "I just wanna play video games."
@@ -215,6 +239,7 @@ public class ConfrontationEntry
     };
     private static Action<Confrontation> schoolChildRound3 = (Confrontation confrontation) =>
     {
+        confrontation.entry = confrontation.entry.Copy();
         confrontation.entry.flavorText = "They want to know what\n(1 + ((225 * (1023984 / 200)) * 11)) is.";
         confrontation.entry.options = new List<TalkOption>()
         {
@@ -224,6 +249,8 @@ public class ConfrontationEntry
                 action = _ =>
                 {
                     confrontation.canLeave = true;
+
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "They're finally done with their homework.";
                     confrontation.entry.options = new List<TalkOption>()
                     {
@@ -244,6 +271,8 @@ public class ConfrontationEntry
                 action = _ =>
                 {
                     confrontation.canLeave = true;
+
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "They're finally done with their homework.";
                     confrontation.entry.options = new List<TalkOption>()
                     {
@@ -264,6 +293,8 @@ public class ConfrontationEntry
                 action = _ =>
                 {
                     confrontation.canLeave = true;
+
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "They're finally done with their homework.";
                     confrontation.entry.options = new List<TalkOption>()
                     {
@@ -284,6 +315,8 @@ public class ConfrontationEntry
                 action = _ =>
                 {
                     confrontation.canLeave = true;
+
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "They're finally done with their homework.";
                     confrontation.entry.options = new List<TalkOption>()
                     {
@@ -337,6 +370,7 @@ public class ConfrontationEntry
     private static int eggManTextureIndex = 0;
     private static Action<Confrontation> eggManRound2 = (Confrontation confrontation) =>
     {
+        confrontation.entry = confrontation.entry.Copy();
         confrontation.entry.flavorText = "They want to know if they're holding a box of eggs.";
         confrontation.entry.options = new List<TalkOption>()
         {
@@ -371,6 +405,7 @@ public class ConfrontationEntry
     };
     private static Action<Confrontation> eggManRound3 = (Confrontation confrontation) =>
     {
+        confrontation.entry = confrontation.entry.Copy();
         confrontation.entry.flavorText = "They want to know if eggs are good for your eyes.";
         confrontation.entry.options = new List<TalkOption>()
         {
@@ -380,6 +415,8 @@ public class ConfrontationEntry
                 action = _ =>
                 {
                     confrontation.canLeave = true;
+
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "They know more about eggs now.";
                     confrontation.entry.options = new List<TalkOption>()
                     {
@@ -400,6 +437,8 @@ public class ConfrontationEntry
                 action = _ =>
                 {
                     confrontation.canLeave = true;
+
+                    confrontation.entry = confrontation.entry.Copy();
                     confrontation.entry.flavorText = "They know more about eggs now.";
                     confrontation.entry.options = new List<TalkOption>()
                     {
@@ -483,6 +522,8 @@ public class Confrontation : Control
     {
         base._Ready();
 
+        Game.PlaySong("Confrontation");
+
         if (entry == null) entry = ConfrontationEntry.Apple;
 
         List<Node> hierarchy = this.GetHierarchy();
@@ -507,8 +548,13 @@ public class Confrontation : Control
         // Setup buttons
 
         mainButtons[0].GrabFocus();
+        mainButtons[0].Connect("focus_entered", this, nameof(ButtonFocused));
         mainButtons[0].Connect("pressed", this, nameof(TalkPressed));
+        mainButtons[1].Connect("focus_entered", this, nameof(ButtonFocused));
         mainButtons[1].Connect("pressed", this, nameof(LeavePressed));
+
+        List<Button> talkButtons = talkButtonsContainer.GetChildrenWithTypeInHierarchy<Button>();
+        foreach (Button button in talkButtons) button.Connect("focus_entered", this, nameof(ButtonFocused));
 
         // Set data
 
@@ -530,7 +576,6 @@ public class Confrontation : Control
         {
             didLoadGameOver = true;
             Game.LoadLevel("GameOver");
-            Game.PlaySfx("Fart3");
         }
 
         if (canLeave && !didCanLeave)
@@ -551,7 +596,7 @@ public class Confrontation : Control
 
     public void OnOptionPressed(TalkOption option)
     {
-        GD.Print("press button");
+        Game.PlaySfx("UiAccept");
         _ = DoTalkOption(option);
     }
 
@@ -669,9 +714,15 @@ public class Confrontation : Control
 
     // Buttons
 
+    public void ButtonFocused()
+    {
+        Game.PlaySfx("UiMove");
+    }
 
     public void TalkPressed()
     {
+        Game.PlaySfx("UiAccept");
+
         mainTextbox.Hide();
         mainButtonsContainer.Hide();
         GiveBackFocus();
@@ -698,13 +749,14 @@ public class Confrontation : Control
 
     public void LeavePressed()
     {
+        Game.PlaySfx("UiAccept");
+
         if (!canLeave)
         {
             _ = CE.CannotLeaveEntry(this);
         }
         else
         {
-            Game.health = Game.maxHealth;
             _ = CE.VictoryEntry(this);
         }
     }

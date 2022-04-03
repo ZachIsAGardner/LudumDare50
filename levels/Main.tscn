@@ -1075,7 +1075,8 @@ position = Vector2( -541, 1059 )
 texture = ExtResource( 27 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -4139, 2076 )
+position = Vector2( -4195, 2068 )
+z_index = 207
 
 [node name="Characters" type="Node" parent="."]
 
@@ -1086,7 +1087,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
-message = "I'm so hot in this suit. Please help me."
+message = "It's really hot it my suit, can you help me?"
 entry = "Apple"
 
 [node name="Sprite" type="Sprite" parent="Characters/Apple"]
@@ -1113,7 +1114,7 @@ input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Characters/Apple/Target"]
 position = Vector2( 180, -72 )
-polygon = PoolVector2Array( -188, 42, -72, 124, 152, 142, 209, 48, 153, -84, -66, -65 )
+polygon = PoolVector2Array( -248, 21, -188, 137, 150, 180, 227, 31, 158, -110, -190, -77 )
 
 [node name="Crestfallen" type="KinematicBody2D" parent="Characters"]
 position = Vector2( -2245, 1389 )
@@ -1122,7 +1123,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
-message = "What is even the point in grocery shopping."
+message = "What is even the point of grocery shopping."
 entry = "Crestfallen"
 
 [node name="Sprite" type="Sprite" parent="Characters/Crestfallen"]
@@ -1141,7 +1142,7 @@ input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Characters/Crestfallen/Target"]
 position = Vector2( 180, -72 )
-polygon = PoolVector2Array( -188, 42, -72, 124, 152, 142, 209, 48, 153, -84, -66, -65 )
+polygon = PoolVector2Array( -240, 22, -213, 116, 152, 142, 209, 48, 153, -84, -179, -69 )
 
 [node name="LongCat" type="KinematicBody2D" parent="Characters"]
 position = Vector2( -424, 1459 )
@@ -1167,17 +1168,17 @@ shape = SubResource( 4 )
 [node name="WaypointContainer" type="Node2D" parent="Characters/LongCat"]
 
 [node name="Waypoint" type="Node2D" parent="Characters/LongCat/WaypointContainer"]
-position = Vector2( -92, -167 )
+position = Vector2( -72, -39 )
 
 [node name="Waypoint2" type="Node2D" parent="Characters/LongCat/WaypointContainer"]
-position = Vector2( 791, -356 )
+position = Vector2( 376, -42 )
 
 [node name="Target" type="Area2D" parent="Characters/LongCat"]
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Characters/LongCat/Target"]
 position = Vector2( 180, -72 )
-polygon = PoolVector2Array( -188, 42, -72, 124, 152, 142, 209, 48, 153, -84, -66, -65 )
+polygon = PoolVector2Array( -247, 28, -222, 119, 152, 142, 209, 48, 153, -84, -172, -62 )
 
 [node name="EggMan" type="KinematicBody2D" parent="Characters"]
 position = Vector2( 470, 2741 )
@@ -1186,7 +1187,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
-message = "Hey do you work here?"
+message = "Hey, do you work here?"
 entry = "EggMan"
 
 [node name="Sprite" type="Sprite" parent="Characters/EggMan"]
@@ -1228,16 +1229,16 @@ position = Vector2( 150, 16 )
 position = Vector2( -241, -69 )
 
 [node name="Waypoint9" type="Node2D" parent="Characters/EggMan/WaypointContainer"]
-position = Vector2( -382, -616 )
+position = Vector2( -390, -470 )
 
 [node name="Waypoint10" type="Node2D" parent="Characters/EggMan/WaypointContainer"]
-position = Vector2( -1264, -632 )
+position = Vector2( -1304, -522 )
 
 [node name="Waypoint11" type="Node2D" parent="Characters/EggMan/WaypointContainer"]
-position = Vector2( -1174, -439 )
+position = Vector2( -1310, -397 )
 
 [node name="Waypoint12" type="Node2D" parent="Characters/EggMan/WaypointContainer"]
-position = Vector2( -329, -468 )
+position = Vector2( -390, -409 )
 
 [node name="Waypoint13" type="Node2D" parent="Characters/EggMan/WaypointContainer"]
 position = Vector2( -292, -9 )
@@ -1265,7 +1266,7 @@ input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Characters/EggMan/Target"]
 position = Vector2( 180, -72 )
-polygon = PoolVector2Array( -188, 42, -72, 124, 152, 142, 209, 48, 153, -84, -66, -65 )
+polygon = PoolVector2Array( -262, 39, -196, 116, 188, 145, 259, 29, 186, -101, -196, -64 )
 
 [node name="Destructor" type="Area2D" parent="Characters/EggMan"]
 
@@ -1281,7 +1282,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
-message = "Can you please help me?"
+message = "Can you help me with my homework?"
 entry = "SchoolChild"
 
 [node name="Sprite" type="Sprite" parent="Characters/SchoolChild"]
@@ -1298,17 +1299,17 @@ shape = SubResource( 4 )
 [node name="WaypointContainer" type="Node2D" parent="Characters/SchoolChild"]
 
 [node name="Waypoint3" type="Node2D" parent="Characters/SchoolChild/WaypointContainer"]
-position = Vector2( -670, -210 )
+position = Vector2( -668, -60 )
 
 [node name="Waypoint4" type="Node2D" parent="Characters/SchoolChild/WaypointContainer"]
-position = Vector2( 43, -210 )
+position = Vector2( 54, -23 )
 
 [node name="Target" type="Area2D" parent="Characters/SchoolChild"]
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Characters/SchoolChild/Target"]
 position = Vector2( 180, -72 )
-polygon = PoolVector2Array( -188, 42, -72, 124, 152, 142, 209, 48, 153, -84, -66, -65 )
+polygon = PoolVector2Array( -267, 33, -225, 113, 152, 142, 209, 48, 153, -84, -202, -68 )
 
 [node name="MultiButt" type="KinematicBody2D" parent="Characters"]
 position = Vector2( -179, 411 )
@@ -1317,7 +1318,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
-message = "Excuse me! I'm in the line for the bathroom."
+message = "Hey, I'm in line for the bathroom."
 entry = "MultiButt"
 
 [node name="Sprite" type="Sprite" parent="Characters/MultiButt"]
@@ -1336,4 +1337,4 @@ input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Characters/MultiButt/Target"]
 position = Vector2( 180, -72 )
-polygon = PoolVector2Array( -188, 42, -72, 124, 152, 142, 209, 48, 153, -84, -66, -65 )
+polygon = PoolVector2Array( -264, 35, -202, 131, 152, 142, 209, 48, 153, -84, -200, -64 )

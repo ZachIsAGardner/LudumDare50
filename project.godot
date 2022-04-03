@@ -11,8 +11,11 @@ config_version=4
 [application]
 
 config/name="LudumDare50"
-run/main_scene="res://prefabs/ArenaMultiButt1.tscn"
-config/icon="res://icon.png"
+config/description="Made in 48 for Ludum Dare 50
+
+- Zachary Gardner"
+run/main_scene="res://levels/Main.tscn"
+config/icon="res://sprites/Head.png"
 
 [autoload]
 

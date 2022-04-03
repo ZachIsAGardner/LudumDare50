@@ -6,10 +6,10 @@ using System.Linq;
 public class ArenaCrestfallen1 : Arena
 {
     float shootTime = 0.5f;
-    List<float> shootTimes = new List<float>() { 0.5f, 0.25f, 0.75f, 0.25f, 0.5f };
+    List<float> shootTimes = new List<float>() { 0.125f, 0.125f, 0.25f, 0.5f, 0.5f };
     PackedScene downerPrefab = ResourceLoader.Load<PackedScene>("res://prefabs/BulletDowner.tscn");
     List<Node2D> spawns = new List<Node2D>() { };
-    int count = new List<int>() { 8, 9, 10, 11, 12 }.Random();
+    int count = new List<int>() { 10, 11, 12, 13, 14 }.Random();
 
     public override void _Ready()
     {

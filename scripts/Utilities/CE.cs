@@ -36,10 +36,13 @@ public static class CE
 
     public static async Task VictoryEntry(Confrontation confrontation)
     {
-        await confrontation.TextSingle("You Win!", false);
+        Game.health = Game.maxHealth;
+        Game.PlaySong("SuccessfulEscape");
+        await confrontation.TextSingle("You made your escape!", false);
         Game.Fade(() =>
         {
             if (Game.player != null) Game.player.IsInControl = true;
+            Game.PlaySong("Main");
             confrontation.QueueFree();
         });
     }
