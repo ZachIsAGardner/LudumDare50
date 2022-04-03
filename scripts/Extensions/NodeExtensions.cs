@@ -57,6 +57,6 @@ public static class NodeExtensions
 
     public static void RemoveChildren(this Node node)
     {
-        foreach (Node child in node.GetChildren()) child.QueueFree();
+        foreach (Node child in node.GetChildren()) child.QueueFree();;
     }
 }

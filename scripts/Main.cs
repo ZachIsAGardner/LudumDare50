@@ -59,9 +59,12 @@ public class Main : Node2D
         playerSprite.Frame = 3;
         Talk.Hide();
         Game.PlaySfx("Fart");
+        Shaker playerShaker = player.GetChildWithTypeInHierarchy<Shaker>();
+        playerShaker.ShakeX(4.5f, 8);
         await Async.WaitForMilliseconds(3500);
 
         playerSprite.Frame = 4;
+        playerShaker.ShakeX(2.5f, 24);
         await Async.WaitForMilliseconds(2000);
 
         Talk.Show();

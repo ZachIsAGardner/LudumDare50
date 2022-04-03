@@ -11,6 +11,7 @@ public class Fade : Panel
     private Color color = new Color(0, 0, 0, 0);
     private float wait = 0.5f;
     private float speed = 2;
+    private bool didDelete = false;
 
     public override void _Ready()
     {
@@ -44,8 +45,9 @@ public class Fade : Panel
             if (wait <= 0)
             {
                 color.a -= speed * delta;
-                if (color.a <= 0)
+                if (color.a <= 0 && !didDelete)
                 {
+                    didDelete = true;
                     QueueFree();
                 }
             }

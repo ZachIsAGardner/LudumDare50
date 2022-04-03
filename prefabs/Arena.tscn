@@ -33,38 +33,50 @@ position = Vector2( 312, 155 )
 collision_layer = 256
 collision_mask = 256
 
-[node name="Wall" type="CollisionShape2D" parent="WallStaticBody"]
+[node name="WallLeft" type="CollisionShape2D" parent="WallStaticBody"]
 position = Vector2( 1, 149 )
 shape = SubResource( 6 )
 
-[node name="Wall2" type="CollisionShape2D" parent="WallStaticBody"]
+[node name="WallRight" type="CollisionShape2D" parent="WallStaticBody"]
 position = Vector2( 640, 149 )
 shape = SubResource( 6 )
 
-[node name="Wall3" type="CollisionShape2D" parent="WallStaticBody"]
-position = Vector2( 300, -5 )
+[node name="WallTop" type="CollisionShape2D" parent="WallStaticBody"]
+position = Vector2( 301, -5 )
 shape = SubResource( 7 )
 
-[node name="Wall4" type="CollisionShape2D" parent="WallStaticBody"]
+[node name="WallGround" type="CollisionShape2D" parent="WallStaticBody"]
 position = Vector2( 300, 301 )
 shape = SubResource( 7 )
 
-[node name="WallArea" type="Area2D" parent="."]
+[node name="WallAreaLeft" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 256
 
-[node name="Wall" type="CollisionShape2D" parent="WallArea"]
+[node name="WallLeft" type="CollisionShape2D" parent="WallAreaLeft"]
 position = Vector2( 1, 149 )
 shape = SubResource( 6 )
 
-[node name="Wall2" type="CollisionShape2D" parent="WallArea"]
+[node name="WallAreaRight" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="WallRight" type="CollisionShape2D" parent="WallAreaRight"]
 position = Vector2( 640, 149 )
 shape = SubResource( 6 )
 
-[node name="Wall3" type="CollisionShape2D" parent="WallArea"]
+[node name="WallAreaTop" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="WallTop" type="CollisionShape2D" parent="WallAreaTop"]
 position = Vector2( 300, -5 )
 shape = SubResource( 7 )
 
-[node name="Wall4" type="CollisionShape2D" parent="WallArea"]
+[node name="WallAreaGround" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="WallGround" type="CollisionShape2D" parent="WallAreaGround"]
 position = Vector2( 300, 301 )
 shape = SubResource( 7 )

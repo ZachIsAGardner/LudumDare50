@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Adjuster.cs" type="Script" id=1]
+[ext_resource path="res://prefabs/Adjuster.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/Cactus.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=3]
+
+[node name="Cactus" type="StaticBody2D"]
+position = Vector2( -354, 131 )
+z_index = 13
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2, -126 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -39 )
+scale = Vector2( 3, 3 )
+shape = SubResource( 3 )
+
+[node name="Adjuster" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 1 )

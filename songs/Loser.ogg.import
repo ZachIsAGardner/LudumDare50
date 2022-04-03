@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Loser.ogg-402aa9e262cebac10cf90d21a12bce22.oggstr"
+
+[deps]
+
+source_file="res://songs/Loser.ogg"
+dest_files=[ "res://.import/Loser.ogg-402aa9e262cebac10cf90d21a12bce22.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

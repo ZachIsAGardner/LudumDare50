@@ -5,6 +5,14 @@ using Godot.Collections;
 
 public static class ArrayExtensions
 {
+    public static T Random<T>(this List<T> list)
+    {
+        RandomNumberGenerator rng = new RandomNumberGenerator();
+        rng.Randomize();
+        int r = rng.RandiRange(0, list.Count() - 1);
+        return list[r];
+    }
+
     public static List<T> ToList<T>(this Array array)
     {
         List<T> list = new List<T>() { };

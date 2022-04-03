@@ -1,14 +1,17 @@
+TODO
+- more arenas
 - 3 more characters
-- better win screen
 - songs  
-    - intro song
-    - main song
-    - battle song
     - win song
-    - lose song
 - finish level design
 - exports for 
     - web
     - mac
     - linux
     - windows
+
+EXTRA
+- better win screen
+- crawl text
+- on game over hide characters already defeated
+- interact with items in overworld

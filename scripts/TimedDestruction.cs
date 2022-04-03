@@ -12,7 +12,7 @@ public class TimedDestruction : Node
         duration -= delta;
         if (duration <= 0)
         {
-            GetParent().QueueFree();
+            GetParent().QueueFree();;
         }
     }
 }

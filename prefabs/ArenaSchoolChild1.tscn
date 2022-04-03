@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prefabs/Arena.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/ArenaSchoolChild1.cs" type="Script" id=2]
+
+[node name="Arena" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Spawn" type="Node2D" parent="." index="6"]
+position = Vector2( -74, 40 )
+
+[node name="Spawn2" type="Node2D" parent="." index="7"]
+position = Vector2( -76, 89 )
+
+[node name="Spawn3" type="Node2D" parent="." index="8"]
+position = Vector2( -75, 138 )
+
+[node name="Spawn4" type="Node2D" parent="." index="9"]
+position = Vector2( -75, 189 )
+
+[node name="Spawn5" type="Node2D" parent="." index="10"]
+position = Vector2( -76, 253 )
+
+[node name="Spawn6" type="Node2D" parent="." index="11"]
+position = Vector2( 686, 40 )
+
+[node name="Spawn7" type="Node2D" parent="." index="12"]
+position = Vector2( 684, 89 )
+
+[node name="Spawn8" type="Node2D" parent="." index="13"]
+position = Vector2( 685, 138 )
+
+[node name="Spawn9" type="Node2D" parent="." index="14"]
+position = Vector2( 685, 189 )
+
+[node name="Spawn10" type="Node2D" parent="." index="15"]
+position = Vector2( 684, 253 )

@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 public class Game : Node
 {
+    public static float elapsed = 0;
+
     public static bool skipIntro = true;
 
     private static Node instance;
@@ -20,7 +22,13 @@ public class Game : Node
     public static PackedScene floatingTextboxPrefab;
     public static PackedScene fadePrefab;
     public static PackedScene sfxPrefab;
+
     public static PackedScene arenaApple1Prefab;
+    public static PackedScene arenaCrestfallen1Prefab;
+    public static PackedScene arenaSchoolChild1Prefab;
+    public static PackedScene arenaEggMan1Prefab;
+    public static PackedScene arenaLongCat1Prefab;
+    public static PackedScene arenaMultiButt1Prefab;
 
     // Talk
 
@@ -39,13 +47,20 @@ public class Game : Node
         floatingTextboxPrefab = ResourceLoader.Load<PackedScene>("res://prefabs/FloatingTextbox.tscn");
         fadePrefab = ResourceLoader.Load<PackedScene>("res://prefabs/Fade.tscn");
         sfxPrefab = ResourceLoader.Load<PackedScene>("res://prefabs/Sfx.tscn");
-        sfxPrefab = ResourceLoader.Load<PackedScene>("res://prefabs/Sfx.tscn");
+
         arenaApple1Prefab = ResourceLoader.Load<PackedScene>("res://prefabs/ArenaApple1.tscn");
+        arenaCrestfallen1Prefab = ResourceLoader.Load<PackedScene>("res://prefabs/ArenaCrestfallen1.tscn");
+        arenaSchoolChild1Prefab = ResourceLoader.Load<PackedScene>("res://prefabs/ArenaSchoolChild1.tscn");
+        arenaEggMan1Prefab = ResourceLoader.Load<PackedScene>("res://prefabs/ArenaEggMan1.tscn");
+        arenaLongCat1Prefab = ResourceLoader.Load<PackedScene>("res://prefabs/ArenaLongCat1.tscn");
+        arenaMultiButt1Prefab = ResourceLoader.Load<PackedScene>("res://prefabs/ArenaMultiButt1.tscn");
     }
 
     public override void _Process(float delta)
     {
         base._Process(delta);
+
+        elapsed += delta;
     }
 
     public static void Fade(Action middleAction)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Adjuster.cs" type="Script" id=1]
+[ext_resource path="res://prefabs/Adjuster.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/ProduceBig.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 31.3333, 12.3333 )
+
+[node name="ProduceBig4" type="StaticBody2D"]
+position = Vector2( -1819, 1652 )
+z_index = 165
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -110 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 10, -46 )
+scale = Vector2( 3, 3 )
+shape = SubResource( 14 )
+
+[node name="Adjuster" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 1 )

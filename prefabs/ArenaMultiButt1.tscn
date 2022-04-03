@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prefabs/Arena.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/ArenaMultiButt1.cs" type="Script" id=2]
+
+[node name="Arena" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Spawn" type="Node2D" parent="." index="6"]
+position = Vector2( -50, -55 )
+
+[node name="Spawn8" type="Node2D" parent="." index="7"]
+position = Vector2( -48, 351 )
+
+[node name="Spawn9" type="Node2D" parent="." index="8"]
+position = Vector2( 699, 350 )
+
+[node name="Spawn10" type="Node2D" parent="." index="9"]
+position = Vector2( 701, -61 )
+
+[node name="Spawn11" type="Node2D" parent="." index="10"]
+position = Vector2( 560, -60 )
+
+[node name="Spawn12" type="Node2D" parent="." index="11"]
+position = Vector2( 447, -61 )
+
+[node name="Spawn13" type="Node2D" parent="." index="12"]
+position = Vector2( 298, -61 )
+
+[node name="Spawn14" type="Node2D" parent="." index="13"]
+position = Vector2( 197, -57 )
+
+[node name="Spawn15" type="Node2D" parent="." index="14"]
+position = Vector2( 68, -61 )
+
+[node name="Spawn16" type="Node2D" parent="." index="15"]
+position = Vector2( 38, 357 )
+
+[node name="Spawn17" type="Node2D" parent="." index="16"]
+position = Vector2( 180, 357 )
+
+[node name="Spawn18" type="Node2D" parent="." index="17"]
+position = Vector2( 303, 356 )
+
+[node name="Spawn19" type="Node2D" parent="." index="18"]
+position = Vector2( 464, 356 )
+
+[node name="Spawn20" type="Node2D" parent="." index="19"]
+position = Vector2( 573, 352 )
+
+[node name="Spawn2" type="Node2D" parent="." index="20"]
+position = Vector2( -51, 49 )
+
+[node name="Spawn3" type="Node2D" parent="." index="21"]
+position = Vector2( -48, 159 )
+
+[node name="Spawn4" type="Node2D" parent="." index="22"]
+position = Vector2( -48, 261 )
+
+[node name="Spawn5" type="Node2D" parent="." index="23"]
+position = Vector2( 693, 39 )
+
+[node name="Spawn6" type="Node2D" parent="." index="24"]
+position = Vector2( 696, 149 )
+
+[node name="Spawn7" type="Node2D" parent="." index="25"]
+position = Vector2( 696, 251 )

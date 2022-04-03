@@ -65,7 +65,7 @@ public class Talk : Node
     {
         textbox.label.Text = text;
         await WaitForInput();
-        textbox.root.QueueFree();
+        textbox.root.QueueFree();;
     }
 
     public static void Hide()

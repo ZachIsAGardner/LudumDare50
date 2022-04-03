@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ui/textbox.tres" type="Theme" id=1]
 [ext_resource path="res://ui/button.tres" type="Theme" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://fonts/WorkSans-VariableFont_wght.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://sprites/Star.png" type="Texture" id=9]
 [ext_resource path="res://sprites/Star2.png" type="Texture" id=10]
+[ext_resource path="res://scripts/Shaker.cs" type="Script" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -54,29 +55,28 @@ margin_bottom = 720.0
 rect_min_size = Vector2( 0, 64 )
 theme = SubResource( 2 )
 
-[node name="ActionContainer" type="VBoxContainer" parent="."]
-margin_top = 291.0
-margin_right = 1280.0
-margin_bottom = 651.0
-alignment = 2
+[node name="ActionContainer" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="DynamicContainer" type="HBoxContainer" parent="ActionContainer"]
-margin_top = 118.0
+margin_top = 409.0
 margin_right = 1280.0
-margin_bottom = 246.0
+margin_bottom = 537.0
 alignment = 1
 
 [node name="MainTextbox" type="Label" parent="ActionContainer/DynamicContainer"]
-margin_left = 160.0
-margin_right = 1120.0
+margin_left = 288.0
+margin_right = 992.0
 margin_bottom = 128.0
-rect_min_size = Vector2( 960, 128 )
+rect_min_size = Vector2( 704, 128 )
 theme = ExtResource( 1 )
+autowrap = true
 
 [node name="TalkButtonsContainer" type="VBoxContainer" parent="ActionContainer/DynamicContainer"]
 visible = false
-margin_left = 320.0
-margin_right = 960.0
+margin_left = 964.0
+margin_right = 1604.0
 margin_bottom = 144.0
 grow_horizontal = 2
 rect_min_size = Vector2( 640, 0 )
@@ -126,20 +126,21 @@ rect_min_size = Vector2( 300, 0 )
 theme = ExtResource( 2 )
 text = "Option Four"
 
-[node name="Padding2" type="Control" parent="ActionContainer"]
-margin_top = 250.0
-margin_right = 1280.0
-margin_bottom = 266.0
-rect_min_size = Vector2( 32, 16 )
+[node name="MainButtonsContainer" type="Control" parent="ActionContainer"]
+margin_left = 994.0
+margin_top = 409.0
+margin_right = 994.0
+margin_bottom = 537.0
 
-[node name="Buttons" type="HBoxContainer" parent="ActionContainer"]
-margin_top = 270.0
-margin_right = 1280.0
-margin_bottom = 340.0
+[node name="MainButtons" type="HBoxContainer" parent="ActionContainer/MainButtonsContainer"]
+margin_left = -994.0
+margin_top = 152.0
+margin_right = 286.0
+margin_bottom = 222.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="ActionContainer/Buttons"]
+[node name="Button" type="Button" parent="ActionContainer/MainButtonsContainer/MainButtons"]
 margin_left = 400.0
 margin_right = 620.0
 margin_bottom = 70.0
@@ -147,13 +148,13 @@ rect_min_size = Vector2( 220, 0 )
 theme = ExtResource( 2 )
 text = "Talk"
 
-[node name="Padding2" type="Control" parent="ActionContainer/Buttons"]
+[node name="Padding2" type="Control" parent="ActionContainer/MainButtonsContainer/MainButtons"]
 margin_left = 624.0
 margin_right = 656.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 32, 0 )
 
-[node name="Button4" type="Button" parent="ActionContainer/Buttons"]
+[node name="Button4" type="Button" parent="ActionContainer/MainButtonsContainer/MainButtons"]
 margin_left = 660.0
 margin_right = 880.0
 margin_bottom = 70.0
@@ -162,20 +163,12 @@ theme = ExtResource( 2 )
 group = ExtResource( 6 )
 text = "Leave"
 
-[node name="Padding" type="Control" parent="ActionContainer"]
-margin_top = 344.0
-margin_right = 1280.0
-margin_bottom = 360.0
-rect_min_size = Vector2( 32, 16 )
-
-[node name="Star" type="Sprite" parent="."]
-visible = false
-position = Vector2( 888, 635 )
+[node name="Star" type="Sprite" parent="ActionContainer/MainButtonsContainer"]
+position = Vector2( -106, 226 )
 texture = ExtResource( 9 )
 
-[node name="Star2" type="Sprite" parent="."]
-visible = false
-position = Vector2( 681, 570 )
+[node name="Star2" type="Sprite" parent="ActionContainer/MainButtonsContainer"]
+position = Vector2( -313, 161 )
 texture = ExtResource( 10 )
 
 [node name="ArenaContainer" type="Control" parent="."]
@@ -192,6 +185,9 @@ margin_left = 512.0
 margin_right = 768.0
 margin_bottom = 256.0
 texture = ExtResource( 3 )
+
+[node name="Shaker" type="Node" parent="CharacterContainer/Character"]
+script = ExtResource( 11 )
 
 [node name="SpeachBubble" type="Sprite" parent="."]
 visible = false
@@ -211,9 +207,28 @@ autowrap = true
 
 [node name="HP" type="Label" parent="."]
 margin_left = 20.0
-margin_top = 570.0
-margin_right = 186.0
-margin_bottom = 640.0
+margin_top = 27.0
+margin_right = 201.0
+margin_bottom = 97.0
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0.552941, 0.129412, 0.129412, 1 )
-text = "Poop: 20"
+text = "Poop: 6"
+
+[node name="Node" type="Node" parent="HP"]
+script = ExtResource( 11 )
+
+[node name="InteractPrompt" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 187.0
+margin_right = 246.0
+margin_bottom = 257.0
+theme = ExtResource( 1 )
+text = "Z: Interact"
+
+[node name="MovePrompt" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 106.0
+margin_right = 362.0
+margin_bottom = 176.0
+theme = ExtResource( 1 )
+text = "Arrow Keys: Move"

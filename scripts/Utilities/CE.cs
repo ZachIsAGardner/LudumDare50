@@ -12,6 +12,22 @@ public static class CE
         {
             return ConfrontationEntry.Crestfallen;
         }
+        else if (entry == "MultiButt")
+        {
+            return ConfrontationEntry.MultiButt;
+        }
+        else if (entry == "LongCat")
+        {
+            return ConfrontationEntry.LongCat;
+        }
+        else if (entry == "SchoolChild")
+        {
+            return ConfrontationEntry.SchoolChild;
+        }
+        else if (entry == "EggMan")
+        {
+            return ConfrontationEntry.EggMan;
+        }
         else
         {
             return ConfrontationEntry.Apple;
@@ -23,7 +39,7 @@ public static class CE
         await confrontation.TextSingle("You Win!", false);
         Game.Fade(() =>
         {
-            Game.player.IsInControl = true;
+            if (Game.player != null) Game.player.IsInControl = true;
             confrontation.QueueFree();
         });
     }

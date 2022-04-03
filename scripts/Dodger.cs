@@ -6,8 +6,10 @@ public class Dodger : KinematicBody2D
 {
     [Export]
     private float speed = 350f;
+
     public Sprite sprite;
     private Area2D area;
+    private Shaker shaker;
 
     public bool IsInControl = true;
 
@@ -19,6 +21,7 @@ public class Dodger : KinematicBody2D
 
         sprite = this.GetChildWithType<Sprite>();
         area = this.GetChildWithTypeInHierarchy<Area2D>();
+        shaker = this.GetChildWithTypeInHierarchy<Shaker>();
         area.Connect("area_entered", this, nameof(OnAreaEntered));
     }
 
@@ -60,6 +63,7 @@ public class Dodger : KinematicBody2D
             sprite.Modulate = new Color(1, 0.5f, 0.5f, 0.5f);
             Game.health -= 1;
             invincibleTime = 1;
+            shaker.ShakeX();
         }
     }
 }
