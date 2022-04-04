@@ -71,6 +71,11 @@ public class Game : Node
         {
             song.VolumeDb -= 10f * delta;
         }
+
+        if (Input.IsActionJustPressed("toggle_fullscreen"))
+        {
+            OS.WindowFullscreen = !OS.WindowFullscreen;
+        }
     }
 
     public static void Fade(Action middleAction)
