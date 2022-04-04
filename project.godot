@@ -16,6 +16,8 @@ config/description="Made in 48 hours for Ludum Dare 50
 - Zachary Gardner"
 run/main_scene="res://levels/Main.tscn"
 config/icon="res://sprites/HeadNormal.png"
+config/macos_native_icon="res://HeadNormal.icns"
+config/windows_native_icon="res://HeadNormal.ico"
 
 [autoload]
 
@@ -27,7 +29,7 @@ Talk="*res://prefabs/Talk.tscn"
 
 window/size/width=1280
 window/size/height=720
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [importer_defaults]
