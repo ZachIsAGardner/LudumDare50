@@ -36,37 +36,32 @@ public class Talk : Node
         speaker.AddChild(textbox.root);
     }
 
-    public static async Task WaitForInput()
+    public static void WaitForInput(Action callback)
     {
-        await Async.WaitForMilliseconds(100);
-        while (!Input.IsActionJustPressed("ui_accept")) await Async.WaitForMilliseconds(1);
-        Game.PlaySfx("UiAccept");
+        if (Input.IsActionJustPressed("ui_accept"))
+        {
+            callback();
+            Game.PlaySfx("UiAccept");
+        }
     }
 
-    public static async Task Single(Node2D speaker, string text)
+    public static void Begin(Node2D speaker, string text)
     {
         Init(speaker);
-        await End(text);
+        Next(text);
     }
 
-    public static async Task Begin(Node2D speaker, string text)
-    {
-        Init(speaker);
-        await Next(text);
-    }
-
-    public static async Task Next(string text)
+    public static void Next(string text)
     {
         textbox.label.Text = text;
-        await WaitForInput();
     }
 
-    public static async Task End(string text)
+    public static void End()
     {
-        textbox.label.Text = text;
-        await WaitForInput();
-        textbox.root.QueueFree();;
+        textbox.root.QueueFree();
     }
+
+    // ---
 
     public static void Hide()
     {

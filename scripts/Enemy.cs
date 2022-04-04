@@ -22,6 +22,12 @@ public class Enemy : KinematicBody2D
 
     private string state = "Patrol";
 
+    private float timer = 0;
+    private int progress = 0;
+
+    private bool doCutscene = false;
+    private bool load = false;
+
     public override void _Ready()
     {
         base._Ready();
@@ -44,6 +50,13 @@ public class Enemy : KinematicBody2D
     public override void _Process(float delta)
     {
         base._Process(delta);
+
+        timer -= delta;
+
+        if (doCutscene)
+        {
+            Cutscene();
+        }
 
         if (area != null)
         {
@@ -100,37 +113,69 @@ public class Enemy : KinematicBody2D
             player.IsInControl = false;
             player.sprite.FlipH = player.Position.x > Position.x;
 
-            _ = Cutscene();
+            doCutscene = true;
         }
     }
 
-    async Task Cutscene()
+    void Cutscene()
     {
-        await Async.WaitForMilliseconds(1000);
+        if (timer > 0) return;
 
-        state = "Chase";
-
-        while (state == "Chase")
+        if (progress == 0)
         {
-            await Async.WaitForMilliseconds(1);
+            progress++;
+            timer = 1;
+            return;
         }
 
-        await Talk.Single(this as Node2D, message);
-
-        bool load = false;
-
-        Game.Fade(() => load = true);
-
-        while (!load)
+        if (progress == 1)
         {
-            await Async.WaitForMilliseconds(1);
+            progress++;
+            state = "Chase";
+            return;
         }
 
-        Confrontation confrontationInstance = (Confrontation)confrontationLevel.Instance();
-        confrontationInstance.entry = CE.GetEntry(entry);
-        Control dynamicContainer = Game.canvas.GetChildWithName<Control>("DynamicContainer");
-        dynamicContainer.AddChild(confrontationInstance);
+        if (progress == 2)
+        {
+            if (state != "Chase") progress++;
+            return;
+        }
 
-        QueueFree();
+        if (progress == 3)
+        {
+            progress++;
+            Talk.Begin(this as Node2D, message);
+            return;
+        }
+
+        if (progress == 4)
+        {
+            Talk.WaitForInput(() => progress++);
+            return;
+        }
+
+        if (progress == 5)
+        {
+            progress++;
+            Game.Fade(() => load = true);
+            return;
+        }
+
+        if (progress == 6)
+        {
+            if (load) progress++;
+            return;
+        }
+
+        if (progress == 7)
+        {
+            progress++;
+            Confrontation confrontationInstance = (Confrontation)confrontationLevel.Instance();
+            confrontationInstance.entry = CE.GetEntry(entry);
+            Control dynamicContainer = Game.canvas.GetChildWithName<Control>("DynamicContainer");
+            dynamicContainer.AddChild(confrontationInstance);
+            QueueFree();
+            return;
+        }
     }
 }

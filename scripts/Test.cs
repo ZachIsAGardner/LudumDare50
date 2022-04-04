@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public class Test : Control
@@ -8,21 +10,20 @@ public class Test : Control
     {
         base._Ready();
         // _ = Thing();
+
+        foreach (var item in Thing())
+        {
+            GD.Print(item);        
+        }
     }
 
-    // async Task Thing() 
-    // {
-    //     while (true)
-    //     {
-    //         if (Input.IsActionJustPressed("ui_accept"))
-    //         {
-    //             GD.Print("ACCEPT PRESSED");
-    //             break;
-    //         }
-    //         await Async.WaitForMilliseconds(1);
-    //     }
-    //     GD.Print("REACHED END OF ASYNC FUNCTION");
-    // }
+    IEnumerable<int> Thing()
+    {
+        yield return 1;
+        yield return 2;
+        yield return 3;
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);

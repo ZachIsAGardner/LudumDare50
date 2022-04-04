@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="LudumDare50"
-config/description="Made in 48 for Ludum Dare 50
+config/description="Made in 48 hours for Ludum Dare 50
 
 - Zachary Gardner"
 run/main_scene="res://levels/Main.tscn"

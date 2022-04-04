@@ -141,7 +141,7 @@ public class ConfrontationEntry
                             {
                                 confrontation.canLeave = true;
                                 confrontation.entry = confrontation.entry.Copy();
-                                confrontation.entry.flavorText = "They seem very proud of themselves.";
+                                confrontation.entry.flavorText = "After your barrage of compliments they seem very distracted with themselves.";
                             },
                             speach = "I get that a lot!"
                         },
@@ -518,6 +518,15 @@ public class Confrontation : Control
 
     public Label hp;
 
+    // ...
+
+    int progress = 0;
+    float timer = 0;
+    public Action lastCoroutine = null;
+    public Action coroutine = null;
+    private TalkOption selectedTalkOption = null;
+    Arena arena = null;
+
     public override void _Ready()
     {
         base._Ready();
@@ -565,7 +574,9 @@ public class Confrontation : Control
     public override void _Process(float delta)
     {
         base._Process(delta);
+
         this.delta = delta;
+
         if (lastHealth != Game.health && Game.health != Game.maxHealth)
         {
             hp.GetChildWithType<Shaker>().ShakeX();
@@ -590,6 +601,14 @@ public class Confrontation : Control
             starSprite.Hide();
             starSprite2.Hide();
         }
+
+        timer -= delta;
+
+        if (timer > 0) return;
+
+        if (lastCoroutine != coroutine) progress = 0;
+        if (coroutine != null) coroutine();
+        lastCoroutine = coroutine;
     }
 
     // Misc
@@ -597,45 +616,103 @@ public class Confrontation : Control
     public void OnOptionPressed(TalkOption option)
     {
         Game.PlaySfx("UiAccept");
-        _ = DoTalkOption(option);
+        selectedTalkOption = option;
+        coroutine = DoTalkOption;
     }
 
-    public async Task DoTalkOption(TalkOption option)
+    public void DoTalkOption()
     {
-        talkButtonsContainer.Hide();
-
-        if (option.action != null)
+        if (progress == 0)
         {
-            option.action(this);
+            progress++;
+            talkButtonsContainer.Hide();
+
+            if (selectedTalkOption.action != null)
+            {
+                selectedTalkOption.action(this);
+            }
+
+            if (!String.IsNullOrWhiteSpace(selectedTalkOption.reply))
+            {
+                TextSingle(selectedTalkOption.reply);
+            }
+            else
+            {
+                progress++;
+            }
+            return;
         }
 
-        if (!String.IsNullOrWhiteSpace(option.reply))
+        if (progress == 1)
         {
-            await TextSingle(option.reply, false);
+            Talk.WaitForInput(() => progress++);
+            return;
+        }
+
+        if (progress == 2)
+        {
+            progress++;
             mainTextbox.Hide();
+            if (!String.IsNullOrWhiteSpace(selectedTalkOption.speach))
+            {
+                SpeachSingle(selectedTalkOption.speach);
+                timer = 0.1f;
+            }
+            else
+            {
+                progress++;
+            }
+            return;
         }
 
-        if (!String.IsNullOrWhiteSpace(option.speach))
+        if (progress == 3)
         {
-            await SpeachSingle(option.speach);
+            Talk.WaitForInput(() => progress++);
+            return;
         }
 
-        RandomNumberGenerator rng = new RandomNumberGenerator();
-        rng.Randomize();
-        int r = rng.RandiRange(0, entry.arenas.Count - 1);
+        if (progress == 4)
+        {
+            progress++;
+            speachBubble.Hide();
+            return;
+        }
 
-        actionContainer.Hide();
-        Arena arena = (Arena)entry.arenas[r].Instance();
-        arenaContainer.AddChild(arena);
-        while (!arena.Done()) await Async.WaitForMilliseconds(1);
+        if (progress == 5)
+        {
+            progress++;
+            RandomNumberGenerator rng = new RandomNumberGenerator();
+            rng.Randomize();
+            int r = rng.RandiRange(0, entry.arenas.Count - 1);
+            actionContainer.Hide();
+            arena = (Arena)entry.arenas[r].Instance();
+            arenaContainer.AddChild(arena);
+            return;
+        }
 
-        actionContainer.Show();
-        mainTextbox.Show();
-        mainButtonsContainer.Show();
-        mainButtons[0].GrabFocus();
-        mainTextbox.Text = entry.flavorText;
-        arena.QueueFree();
-        GiveBackFocus();
+        if (progress == 6)
+        {
+            if (arena.Done()) progress++;
+            return;
+        }
+
+        if (progress == 7)
+        {
+            progress++;
+            actionContainer.Show();
+            mainTextbox.Show();
+            mainButtonsContainer.Show();
+            mainButtons[0].GrabFocus();
+            mainTextbox.Text = entry.flavorText;
+            arena.QueueFree();
+            GiveBackFocus();
+            return;
+        }
+
+        if (progress == 8)
+        {
+            coroutine = null;
+        }
     }
 
     public void RemoveFocus()
@@ -649,67 +726,101 @@ public class Confrontation : Control
         focus.EnabledFocusMode = FocusModeEnum.None;
     }
 
+    // ---
+
+    public void DoVictory()
+    {
+        if (progress == 0)
+        {
+            progress++;
+            Game.health = Game.maxHealth;
+            Game.PlaySong("SuccessfulEscape");
+            TextSingle("You made your escape!");
+            return;
+        }
+
+        if (progress == 1)
+        {
+            Talk.WaitForInput(() => progress++);
+            return;
+        }
+
+        if (progress == 2)
+        {
+            progress++;
+            mainTextbox.Hide();
+            return;
+        }
+
+        if (progress == 3)
+        {
+            progress++;
+            Game.Fade(() =>
+            {
+                if (Game.player != null) Game.player.IsInControl = true;
+                Game.PlaySong("Main");
+                QueueFree();
+            });
+            return;
+        }
+
+        if (progress == 4)
+        {
+            progress++;
+            coroutine = null;
+            return;
+        }
+    }
+
+    public void DoCannotLeave()
+    {
+        if (progress == 0)
+        {
+            progress++;
+            TextSingle("It seems they aren't satisfied...");
+            return;
+        }
+
+        if (progress == 1)
+        {
+            Talk.WaitForInput(() => progress++);
+            return;
+        }
+
+        if (progress == 2)
+        {
+            progress++;
+            mainButtonsContainer.Show();
+            mainButtons[0].GrabFocus();
+            mainTextbox.Text = entry.flavorText;
+            return;
+        }
+
+        if (progress == 3)
+        {
+            progress++;
+            coroutine = null;
+            return;
+        }
+    }
+
     // Speach
 
-    public async Task SpeachSingle(string text)
+    public void SpeachSingle(string text)
     {
         speachBubble.Show();
         speachBubble.GetChildWithType<Label>().Text = text;
-        await Async.WaitForMilliseconds(100);
-        float duration = 2;
-        while (duration > 0 && !Input.IsActionJustPressed("ui_accept"))
-        {
-            duration -= delta;
-            await Async.WaitForMilliseconds(1);
-        }
-        speachBubble.Hide();
     }
 
     // Main Textbox
 
-    public async Task TextSingle(string text, bool returnToActions = true)
+    public void TextSingle(string text)
     {
         mainTextbox.Show();
         mainButtonsContainer.Hide();
         RemoveFocus();
 
         mainTextbox.Text = text;
-        await Talk.WaitForInput();
-
-        if (returnToActions)
-        {
-            mainButtonsContainer.Show();
-            mainButtons[0].GrabFocus();
-            mainTextbox.Text = entry.flavorText;
-        }
-    }
-
-    public async Task TextBegin(string text)
-    {
-        mainTextbox.Show();
-        mainButtonsContainer.Hide();
-        RemoveFocus();
-
-        mainTextbox.Text = text;
-        await Talk.WaitForInput();
-    }
-
-    public async Task TextNext(string text)
-    {
-        mainTextbox.Text = text;
-        await Talk.WaitForInput();
-    }
-
-    public async Task TextEnd(string text)
-    {
-        mainTextbox.Text = text;
-        await Talk.WaitForInput();
-
-        mainButtonsContainer.Show();
-        GiveBackFocus();
-        mainButtons[0].GrabFocus();
-
-        mainTextbox.Text = entry.flavorText;
     }
 
     // Buttons
@@ -753,11 +864,11 @@ public class Confrontation : Control
 
         if (!canLeave)
         {
-            _ = CE.CannotLeaveEntry(this);
+            coroutine = DoCannotLeave;
         }
         else
         {
-            _ = CE.VictoryEntry(this);
+            coroutine = DoVictory;
         }
     }
 }
