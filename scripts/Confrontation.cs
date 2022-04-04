@@ -376,14 +376,14 @@ public class ConfrontationEntry
         {
             new TalkOption()
             {
-                text = "Yes",
+                text = "Confirm Eggs",
                 action = _ => eggManRound3(confrontation),
                 reply = "You confirm they're indeed holding a box of eggs.",
                 speach = "Okay thanks, my vision is not so good."
             },
             new TalkOption()
             {
-                text = "No",
+                text = "Deny Eggs",
                 action = _ =>
                 {
                     confrontation.character.GetChildWithType<Shaker>().ShakeX();

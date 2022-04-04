@@ -12,7 +12,8 @@ public class Main : Node2D
     public override void _Ready()
     {
         base._Ready();
-
+        
+        GD.Print("MAIN START");
 
         player = this.GetChildWithNameInHierarchy("Player") as Player;
         interactPrompt = this.GetChildWithNameInHierarchy("InteractPrompt") as Label;
