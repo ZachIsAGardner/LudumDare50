@@ -1087,7 +1087,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
-message = "It's really hot it my suit, can you help me?"
+message = "It's really hot in my suit, can you help me?"
 entry = "Apple"
 
 [node name="Sprite" type="Sprite" parent="Characters/Apple"]
